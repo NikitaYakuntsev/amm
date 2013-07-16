@@ -4,7 +4,9 @@
 
 using namespace std;
 
-int n=4;
+
+int n=4; //set the array size as you wish
+
 int *tree = new int[n*4];
 
 void build(int v, int tl, int tr, int a[]) {
@@ -18,7 +20,7 @@ void build(int v, int tl, int tr, int a[]) {
     }
 }
 
-void update(int v, int tl, int tr, int ind, int k) { //ind-индекс в а, k - значение в а, которое изменяем
+void update(int v, int tl, int tr, int ind, int k) { //ind - index of element, k - new elem
     if (tl==tr)
         tree[v]=k;
     else {
@@ -37,7 +39,7 @@ int sum (int v, int tl, int tr, int l, int r) {
     if (tl==l && tr==r) {
         return tree[v];
     } else {
-        int tm=(tl+tr)/2; //tl+(tr-tl)/2
+        int tm=(tl+tr)/2;
         int tmp1=sum(2*v,tl, tm, l, min(tm,r));
         int tmp2=sum(2*v+1, tm+1, tr, max(l,tm+1),r);
         int tmp3=tmp2+tmp1;
@@ -54,22 +56,22 @@ int main()
     cout << n << " elements of array:" << endl;
     for (i=0; i<n; i++)
         cin >> a[i];
-    //построение дерева
+    //build tree
     build(1,0,n-1,a);
 
-    //отрезок
+    //segment
     int l,r;
     cout << "l, r: ";
     cin >> l >> r;
-    //сумма на отрезке
+    //sum on this segment
     cout << sum(1,0,n-1,l-1,r-1) << endl;
 
-    //замена j-го элемента на значение k
+    //change a[j] to k
     int j,p;
     cout << "a[j]=p; j >> p: ";
     cin >> j >> p;
 
-    //обновление дерева
+    //update tree
     update(1,0,n-1,j-1,p);
     cout << "new sum: " << sum(1,0,n-1,l-1,r-1) << endl;
 
