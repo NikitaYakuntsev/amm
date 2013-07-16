@@ -1,4 +1,4 @@
-
+//number of inversions in permutation
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -49,7 +49,7 @@ int sum (int v, int tl, int tr, int l, int r) {
 int main() {
 
     cin >> n;
-    int *inver = new int[n]; //array of 1
+    int *inver = new int[n]; //array of 1 and 0
     vector <int> a(n);
 
     //array of pairs element-index
